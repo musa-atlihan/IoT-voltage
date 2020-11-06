@@ -30,10 +30,22 @@ public class TelemetryPoller {
         BlockingQueue<SensorReading> queue = new LinkedBlockingDeque<>(1000);
 
         // simulate machine sensory reading
+        TelemetryRunnable telemetryRunnable = new TelemetryRunnable(queue);
+        Thread telemetryThread = new Thread(telemetryRunnable);
 
         // create a kafka producer
+        ProducerRunnable producerRunnable = new ProducerRunnable(propsPath, queue);
+        Thread producerThread = new Thread(producerRunnable);
+
+        telemetryThread.start();
+        producerThread.start();
 
         // shutdown hook
+        Runtime.getRuntime().addShutdownHook(new Thread( () -> {
+            logger.info("Caught shutdown hook.");
+            producerRunnable.shutdown();
+            logger.info("Application has exited.");
+        }));
 
     }
 

@@ -1,5 +1,7 @@
 # Simulate IoT sensor, use Kafka to process data in real-time, save to Elasticsearch.
 
+*Also published on [DEV](https://dev.to/musaatlihan/simulate-iot-sensor-use-kafka-to-process-data-in-real-time-save-to-elasticsearch-13c8)*
+
 Previously I did a project that solves the predictive maintenance problem by using Apache Spark ML - with the article [here](https://dev.to/musaatlihan/predicting-machine-failures-with-distributed-computing-spark-aws-emr-and-dl-44b3).
 
 
